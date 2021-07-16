@@ -4,12 +4,23 @@ import { data } from '../../../data';
 // reducer function
 
 const reducer = (state, action) => {
+  console.log(state);
+  if(action.type === 'ADD_ITEM') {
+    const newPeople = [...state.people, action.payload ]
+    return {
+      ...state,
+      people: newPeople,
+      isModalOpen: true,
+      modalContent: 'item added',
+    };
+  }
+  throw new Error('no matching action type');
+};
 
-}
 const defaultState = {
   people: [],
   isModalOpen: false,
-  modalcontent: 'hello world'
+  modalContent: '',
 }
 
 const Index = () => {
@@ -18,9 +29,10 @@ const Index = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (name) {
-   
+      const newItem = {id:new Date().getTime().toString(), name}
+      dispatch({ type: 'ADD_ITEM', payload:newItem })
     } else {
-    
+      dispatch({ type: 'RANDOM' })
     }
   };
 
