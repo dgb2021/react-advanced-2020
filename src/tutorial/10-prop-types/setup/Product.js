@@ -1,7 +1,22 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 
-const Product = () => {
-  return <article className='product'>single product</article>;
+const Product = ({ image, name, price }) => {
+  console.log(image, name, price)
+  return ( 
+    <article className='product'>
+      <h4>singel product</h4>
+      {/* <h4>{name}</h4>
+      <p>${price}</p> */}
+    </article>
+  );
 };
+
+Product.propTypes = {
+  image: PropTypes.object.isRequired,
+  name: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+
+}
 
 export default Product;
